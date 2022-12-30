@@ -99,7 +99,7 @@ labels = [row[1] for row in csvreader if len(row) > 1]
 # PT
 model = AutoModelForSequenceClassification.from_pretrained(MODEL)
 model.save_pretrained(MODEL)
-# tokenizer.save_pretrained(MODEL)
+tokenizer.save_pretrained(MODEL)
 
 #---------------------------------------------------------------
 
@@ -139,7 +139,7 @@ while True:
             output = model(**encoded_input)
             scores = output[0][0].detach().numpy()
             scores = softmax(scores)
-            listTW.append([text,scores[2], scores[1], scores[0]])
+            listTW[i].append([text,scores[2], scores[1], scores[0]])
         window['-TABLE-'].update(values=listTW)
                                      
 
